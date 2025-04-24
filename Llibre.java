@@ -16,6 +16,14 @@ public class Llibre {
     public void prestar() { prestat = true; }
     public void retornar() { prestat = false; }
     
+    //mejora
+    public void disponible() {
+        if (this.prestat == true) {
+            System.out.println("El llibre no esta disponible");
+        } else {
+            System.out.println("El llibre esta disponible");
+        }
+    }
     
     //Funciones
     public void modificarLlibre(String titolMod, String autorMod) {
