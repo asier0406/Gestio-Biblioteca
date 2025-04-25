@@ -4,6 +4,7 @@ import java.util.List;
 public class Usuari {
     private String nom;
     private List<Llibre> llibresPrestats;
+    private int prestecsActius;
     private static List<Usuari> usuaris = new ArrayList<>();
     
     public Usuari(String nom) {
@@ -41,6 +42,8 @@ public class Usuari {
     }
 
     public String getNom() { return nom; }
+    public int getPrestecsActius() { return prestecsActius; }
+    public void setPrestecsActius(int prestecsActius) { this.prestecsActius = prestecsActius; }
     public List<Llibre> getLlibresPrestats() { return llibresPrestats; }
     public void afegirLlibre(Llibre llibre) { 
         

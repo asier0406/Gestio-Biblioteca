@@ -3,8 +3,8 @@ import java.util.Scanner;
 public class main {
     public main(String[] args) {
         Biblioteca biblioteca = new Biblioteca();
-        Llibre llibre1 = new Llibre("1984", "George Orwell");
-        Llibre llibre2 = new Llibre("El petit príncep", "Antoine de Saint-Exupéry");
+        Llibre llibre1 = new Llibre("1984", "George Orwell", "Ficción");
+        Llibre llibre2 = new Llibre("El petit príncep", "Antoine de Saint-Exupéry", "Infantil");
         biblioteca.afegirLlibre(llibre1);
         biblioteca.afegirLlibre(llibre2);
 
