@@ -4,6 +4,7 @@ import java.util.List;
 public class Usuari {
     private String nom;
     private List<Llibre> llibresPrestats;
+    private List<prestec> historialPrestecs;
     private int prestecsActius;
     private static List<Usuari> usuaris = new ArrayList<>();
     
@@ -60,7 +61,7 @@ public class Usuari {
      * Afegeix un prestec al historial del usuari.
      * @param Prestec prestec
      */
-    public void afegirPrestecAlHistorial(Prestec prestec) {
+    public void afegirPrestecAlHistorial(prestec prestec) {
         historialPrestecs.add(prestec);
     }
 
@@ -69,7 +70,7 @@ public class Usuari {
      */
     public void historialPrestectsUsuari() {
         System.out.println("\nHistorial de préstecs de " + nom + ":");
-        for (Prestec p : historialPrestecs) {
+        for (prestec p : historialPrestecs) {
             String estat = p.esRetornat() ? "Retornat" : "Pendent";
             System.out.println(
                 "Llibre: " + p.getLlibre().getTitol() +
