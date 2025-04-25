@@ -4,7 +4,7 @@ import java.util.List;
 
 public class GestorBiblioteca {
     // Propietats
-    private List<Prestec> prestecs;
+    private List<prestec> prestecs;
 
     // Constructors
     public GestorBiblioteca() {
@@ -22,7 +22,7 @@ public class GestorBiblioteca {
         // s'afegeix el llibre al usuari i s'imprimeix per pantalla el resultat.
         if (!llibre.esPrestat()) {
             llibre.prestar();
-            Prestec prestec = new Prestec(usuari, llibre, LocalDate.now());
+            prestec prestec = new prestec(usuari, llibre, LocalDate.now());
             prestecs.add(prestec);
             usuari.afegirLlibre(llibre);
             System.out.println(usuari.getNom() + " ha agafat el llibre: " + llibre.getTitol());
@@ -36,16 +36,16 @@ public class GestorBiblioteca {
      * @param llibreComprovar llibre
      * @return true si hi ha més d'una còpia, false altrament.
      */
-    public boolean estocDisponible(Llibre llibreComprovar) {
+    public int estocDisponible(Biblioteca biblioteca, Llibre llibreComprovar) {
         // Biblioteca i contador de quantitat disponible.
-        List<Llibre> biblioteca = Biblioteca.getLlibres();
+        List<Llibre> bibliotecaLlibres = biblioteca.getLlibres();
         int quantitat = 0;
 
         // Per cada llibre en la biblioteca, mirem si es el que busquem
         // i está disponible. Si es cumpleix, quantitat +1.
-        for (Llibre llibre : biblioteca) {
-            if (llibreComprovar.getTitol().equalsIgnoreCase(llibre) &&
-                llibre.esPrestat == false) {
+        for (Llibre llibre : bibliotecaLlibres) {
+            if (llibreComprovar.getTitol().equalsIgnoreCase(llibre.getTitol()) &&
+                llibre.esPrestat() == false) {
 
                 quantitat++;
             }

@@ -42,17 +42,17 @@ public class Biblioteca {
      * @param String titol
      */
     public Llibre buscarLlibreSenseAccents(String titol) {
-        buscarLlibre(eliminarAccents(titol));
+        return buscarLlibre(eliminarAccents(titol));
     }
 
     /**
      * Elimina els accents del text.
      * @param String text
      */
-    private void eliminarAccents(String text) {
+    private String eliminarAccents(String text) {
         // El normalize separa els accents de les lleters
         // i el replace all elimina els accents separats.
-        Normalizer.normalize(text, Normalizer.Form.NFD).replaceAll("\\p{M}", "");
+        return Normalizer.normalize(text, Normalizer.Form.NFD).replaceAll("\\p{M}", "");
     }
 
     /**

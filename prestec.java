@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 
-public class Prestec {
+public class prestec {
     public static final int MAX_PRESTECS = 5; // Número màxim de préstecs per usuari
     private Usuari usuari;
     private Llibre llibre;
@@ -8,7 +8,7 @@ public class Prestec {
     private LocalDate dataRetorn;
     private boolean retornat;
 
-    public Prestec(Usuari usuari, Llibre llibre, LocalDate dataPrestec) {
+    public prestec(Usuari usuari, Llibre llibre, LocalDate dataPrestec) {
         validarPrestec(usuari, llibre); // Validem si es pot fer el préstec
 
         this.usuari = usuari;
@@ -22,30 +22,30 @@ public class Prestec {
     }
 
     private void validarPrestec(Usuari usuari, Llibre llibre) {
-        if (!llibre.estaDisponible()) {
+        if (llibre.esPrestat()) {
             throw new RuntimeException("El llibre " + llibre.getTitol() + " no està disponible.");
         }
 
-        if (usuari.getNumPrestecsActius() >= MAX_PRESTECS) {
+        if (usuari.getLlibresPrestats().size() >= MAX_PRESTECS) {
             throw new RuntimeException("L'usuari " + usuari.getNom() + " ha assolit el màxim de préstecs permès: " + MAX_PRESTECS);
         }
     }
 
     private void incrementarPrestecs(Usuari usuari) {
-        usuari.setNumPrestecsActius(usuari.getNumPrestecsActius() + 1);
+        usuari.setPrestecsActius(usuari.getPrestecsActius() + 1);
     }
 
     private void decrementarPrestecs(Usuari usuari) {
-        if (usuari.getNumPrestecsActius() > 0) {
-            usuari.setNumPrestecsActius(usuari.getNumPrestecsActius() - 1);
+        if (usuari.getPrestecsActius() > 0) {
+            usuari.setPrestecsActius(usuari.getPrestecsActius() - 1);
         }
     }
 
-    public void returnarLlibre() {
+    public void retornarLlibre() {
         if (!retornat) {
             this.retornat = true; // Marquem el préstec com retornat
             decrementarPrestecs(usuari); // Reduïm el nombre de préstecs actius
-            llibre.devolver();           // Marquem el llibre com disponible
+            llibre.retornar();           // Marquem el llibre com disponible
         }
     }
 
