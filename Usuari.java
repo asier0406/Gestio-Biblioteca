@@ -10,7 +10,7 @@ public class Usuari {
     public Usuari(String nom) {
         this.nom = nom;
         this.llibresPrestats = new ArrayList<>();
-
+        this.historialPrestecs = new ArrayList<>();
         usuaris.add(this);
     }
 
@@ -55,4 +55,28 @@ public class Usuari {
         }
     }
     public void retornarLlibre(Llibre llibre) { llibresPrestats.remove(llibre); }
+
+    /**
+     * Afegeix un prestec al historial del usuari.
+     * @param Prestec prestec
+     */
+    public void afegirPrestecAlHistorial(Prestec prestec) {
+        historialPrestecs.add(prestec);
+    }
+
+    /**
+     * Mètode per mostar l'historial de prestecs d'un usuari.
+     */
+    public void historialPrestectsUsuari() {
+        System.out.println("\nHistorial de préstecs de " + nom + ":");
+        for (Prestec p : historialPrestecs) {
+            String estat = p.esRetornat() ? "Retornat" : "Pendent";
+            System.out.println(
+                "Llibre: " + p.getLlibre().getTitol() +
+                ", Data préstec: " + p.getDataPrestec() +
+                ", Data retorn: " + p.getDataRetorn() +
+                ", Estat: " + estat
+            );
+        }
+    }
 }

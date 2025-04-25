@@ -17,6 +17,9 @@ public class prestec {
         this.dataRetorn = dataPrestec.plusWeeks(2); // Data de retorn automàtica (2 setmanes)
         this.retornat = false;
 
+        // Afegeix el préstec a l'historial de l'usuari
+        usuari.afegirPrestecAlHistorial(this); 
+
         incrementarPrestecs(usuari); // Incrementem el nombre de préstecs actius
         llibre.prestar();           // Marquem el llibre com prestat
     }
@@ -54,4 +57,5 @@ public class prestec {
     public Llibre getLlibre() { return llibre; }
     public LocalDate getDataRetorn() { return dataRetorn; }
     public boolean esRetornat() { return retornat; }
+    public LocalDate getDataPrestec() { return dataPrestec; }
 }
